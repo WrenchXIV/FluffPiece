@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FluffPiece — Logo Guidelines (Working Draft)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-mode="edit">
+  <!-- Top toolbar -->
+  <header class="toolbar">
+    <div class="toolbar-left">
+      <span class="toolbar-mark">FluffPiece</span>
+      <span class="toolbar-divider"></span>
+      <span class="toolbar-doc">Logo Guidelines · v0.1 working draft</span>
+    </div>
+    <div class="toolbar-right">
+      <span class="save-status" id="saveStatus">All edits saved</span>
+      <button class="btn btn-ghost" id="modeToggle" title="Toggle edit/presentation">Edit mode</button>
+      <button class="btn btn-ghost" id="exportBtn" title="Download current state as JSON">Export</button>
+      <button class="btn btn-ghost" id="printBtn" title="Print or save as PDF">Print</button>
+      <button class="btn btn-danger" id="resetBtn" title="Reset to defaults">Reset</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Side nav -->
+    <nav class="sidenav" aria-label="Section navigation">
+      <ol>
+        <li><a href="#cover">Cover</a></li>
+        <li><a href="#about">About this guide</a></li>
+        <li><a href="#primary">Primary logo</a></li>
+        <li><a href="#anatomy">Anatomy</a></li>
+        <li><a href="#lockups">Lockups</a></li>
+        <li><a href="#palette">Color palette</a></li>
+        <li><a href="#variations">Color variations</a></li>
+        <li><a href="#clearspace">Clear space</a></li>
+        <li><a href="#minsize">Minimum size</a></li>
+        <li><a href="#backgrounds">Approved backgrounds</a></li>
+        <li><a href="#misuse">Misuse</a></li>
+        <li><a href="#files">File formats</a></li>
+        <li><a href="#notes">Notes &amp; change log</a></li>
+      </ol>
+      <div class="sidenav-footer">
+        <p class="muted small">Click any text or swatch to edit. Changes auto-save to this browser.</p>
+      </div>
+    </nav>
+
+    <main class="content">
+
+      <!-- COVER ============================================================ -->
+      <section id="cover" class="section section-cover">
+        <div class="cover-grid">
+          <div class="cover-text">
+            <p class="eyebrow" data-edit="cover.eyebrow">A Mad Ones Production</p>
+            <h1 class="cover-title" data-edit="cover.title">FluffPiece</h1>
+            <p class="cover-tagline" data-edit="cover.tagline">A bubbly little brand for big little investigators.</p>
+            <dl class="cover-meta">
+              <div><dt>Working title</dt><dd data-edit="cover.workingTitle">Let's Investigate</dd></div>
+              <div><dt>Audience</dt><dd data-edit="cover.audience">Children, ages 2–8</dd></div>
+              <div><dt>Document</dt><dd data-edit="cover.docName">Logo Guidelines — Working Draft</dd></div>
+              <div><dt>Version</dt><dd data-edit="cover.version">v0.1 · 2026-05-07</dd></div>
+              <div><dt>Owner</dt><dd data-edit="cover.owner">Brand &amp; Creative</dd></div>
+            </dl>
+          </div>
+          <div class="cover-stage">
+            <div class="logo-stage logo-stage-tall">
+              <img class="logo-img logo-stacked" src="assets/fluffpiece-stacked.png" alt="FluffPiece logo" data-fallback="assets/fluffpiece-horizontal.png" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT ============================================================ -->
+      <section id="about" class="section">
+        <header class="section-head">
+          <span class="section-num">01</span>
+          <h2 data-edit="about.title">About this guide</h2>
+        </header>
+        <div class="prose two-col">
+          <p data-edit="about.p1">This document is the source of truth for how the FluffPiece logo is used across every surface — broadcast bumpers, app icons, board books, plush hangtags, T-shirt tags, and beyond. It exists so the show feels like itself everywhere a child meets it.</p>
+          <p data-edit="about.p2">The audience is small and sharp. Two-year-olds recognize shapes before words; eight-year-olds recognize knockoffs instantly. The rules below protect the friendliness of the mark while keeping it crisp at icon size and safe on every background a co-branded partner might throw at it.</p>
+        </div>
+        <ul class="callout-list">
+          <li data-edit="about.callout1"><strong>Always</strong> keep the two-tone color relationship — the lighter "Fluff" leads, the deeper "Piece" follows.</li>
+          <li data-edit="about.callout2"><strong>Always</strong> use an approved master file. Never re-letter or reconstruct the mark.</li>
+          <li data-edit="about.callout3"><strong>Choose</strong> the sticker variant whenever the background is busy, photographic, or close in tone to the brand greens.</li>
+        </ul>
+      </section>
+
+      <!-- PRIMARY ========================================================== -->
+      <section id="primary" class="section">
+        <header class="section-head">
+          <span class="section-num">02</span>
+          <h2 data-edit="primary.title">Primary logo</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="primary.p1">The stacked two-tone wordmark is the master mark. Letters sit in two greens with a soft drop shadow that gives them their three-dimensional, plushy presence. The mark is always used as a single locked artwork — never typeset, never rebuilt.</p>
+        </div>
+        <div class="logo-stage logo-stage-large logo-stage-tall">
+          <img class="logo-img logo-stacked" src="assets/fluffpiece-stacked.png" alt="FluffPiece primary logo" data-fallback="assets/fluffpiece-horizontal.png" />
+        </div>
+      </section>
+
+      <!-- ANATOMY ========================================================== -->
+      <section id="anatomy" class="section">
+        <header class="section-head">
+          <span class="section-num">03</span>
+          <h2 data-edit="anatomy.title">Anatomy</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="anatomy.p1">The mark is built from four components. Each plays a role; removing one breaks the others.</p>
+        </div>
+        <div class="anatomy-grid">
+          <figure class="anatomy-card">
+            <div class="anatomy-thumb"><img src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption>
+              <h4 data-edit="anatomy.c1.title">Bubble wordmark</h4>
+              <p data-edit="anatomy.c1.body">Custom puffy letterforms — round, soft-shouldered, slightly inflated. Not a font. Always used as a single locked artwork.</p>
+            </figcaption>
+          </figure>
+          <figure class="anatomy-card">
+            <div class="anatomy-thumb"><img src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption>
+              <h4 data-edit="anatomy.c2.title">Two-tone color</h4>
+              <p data-edit="anatomy.c2.body">"Fluff" sits in the lighter mint. "Piece" sits in the deeper forest. The contrast between the two is what gives the mark its bounce.</p>
+            </figcaption>
+          </figure>
+          <figure class="anatomy-card">
+            <div class="anatomy-thumb"><img src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption>
+              <h4 data-edit="anatomy.c3.title">Tonal drop shadow</h4>
+              <p data-edit="anatomy.c3.body">A soft offset shadow in a deeper tone of each letter's own color. It carries the inflated, plushy feel without reading as a separate effect that can be removed.</p>
+            </figcaption>
+          </figure>
+          <figure class="anatomy-card">
+            <div class="anatomy-thumb"><img src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption>
+              <h4 data-edit="anatomy.c4.title">Smile baseline</h4>
+              <p data-edit="anatomy.c4.body">Each row of letters rides a gentle upward arc. This is intentional — it gives the wordmark its grin. Never flatten the baseline.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- LOCKUPS ========================================================== -->
+      <section id="lockups" class="section">
+        <header class="section-head">
+          <span class="section-num">04</span>
+          <h2 data-edit="lockups.title">Lockups</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="lockups.p1">Three approved lockups cover every situation. Pick by surface shape and background — not by personal preference.</p>
+        </div>
+        <div class="lockup-grid">
+          <figure class="lockup-card">
+            <div class="logo-stage logo-stage-tall">
+              <img class="logo-img logo-stacked" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" />
+            </div>
+            <figcaption>
+              <h4 data-edit="lockups.l1.title">Stacked — primary</h4>
+              <p data-edit="lockups.l1.body">The default. Use for square and portrait surfaces: app icons, posters, plush tags, end boards, social avatars. This is the mark's preferred shape.</p>
+            </figcaption>
+          </figure>
+          <figure class="lockup-card">
+            <div class="logo-stage logo-stage-tall logo-stage-checker">
+              <img class="logo-img logo-stacked" src="assets/fluffpiece-stacked-sticker.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" />
+            </div>
+            <figcaption>
+              <h4 data-edit="lockups.l2.title">Stacked — sticker variant</h4>
+              <p data-edit="lockups.l2.body">Adds a continuous white halo around the stacked mark. Use only when the background is busy, photographic, or close in tone to the brand greens. The halo is a tool, not a default — reach for the primary first.</p>
+            </figcaption>
+          </figure>
+          <figure class="lockup-card">
+            <div class="logo-stage logo-stage-wide">
+              <img class="logo-img logo-horizontal" src="assets/fluffpiece-horizontal.png" alt="" />
+            </div>
+            <figcaption>
+              <h4 data-edit="lockups.l3.title">Horizontal — secondary</h4>
+              <p data-edit="lockups.l3.body">For wide surfaces where vertical room is tight: broadcast bumpers, web headers, banner ads. Use only when the stacked mark would be cropped or shrink below minimum size.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- PALETTE ========================================================== -->
+      <section id="palette" class="section">
+        <header class="section-head">
+          <span class="section-num">05</span>
+          <h2 data-edit="palette.title">Color palette</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="palette.p1">Two greens carry the brand. Cream and ink ground it. The accents are reserved for moments — a pop in a title card, a sticker on a board book — never as primary color. Click any swatch to retune it.</p>
+        </div>
+        <div class="palette-grid" id="paletteGrid"><!-- injected by JS --></div>
+      </section>
+
+      <!-- VARIATIONS ======================================================= -->
+      <section id="variations" class="section">
+        <header class="section-head">
+          <span class="section-num">06</span>
+          <h2 data-edit="variations.title">Color variations</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="variations.p1">In order of preference. Reach for the next variation only when the one above it cannot reproduce faithfully.</p>
+        </div>
+        <div class="variations-grid">
+          <figure class="variation-card" style="background: var(--c-cream)">
+            <div class="logo-stage logo-stage-tall"><img class="logo-img logo-stacked" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption>
+              <h4 data-edit="variations.v1.title">Primary — full color on cream</h4>
+              <p data-edit="variations.v1.body">Default treatment. Use whenever color reproduction is reliable.</p>
+            </figcaption>
+          </figure>
+          <figure class="variation-card" style="background: var(--c-ink)">
+            <div class="logo-stage logo-stage-tall"><img class="logo-img logo-stacked" src="assets/fluffpiece-stacked-sticker.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption class="on-dark">
+              <h4 data-edit="variations.v2.title">Sticker variant on dark</h4>
+              <p data-edit="variations.v2.body">The white halo provides separation on dark surfaces. Preferred over recoloring the wordmark.</p>
+            </figcaption>
+          </figure>
+          <figure class="variation-card" style="background: var(--c-cream)">
+            <div class="logo-stage logo-stage-tall"><img class="logo-img logo-stacked mono-dark" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption>
+              <h4 data-edit="variations.v3.title">Mono — ink</h4>
+              <p data-edit="variations.v3.body">For single-color print, embossing, or laser engraving on light surfaces. Use the official 1c master, not a flattened color logo.</p>
+            </figcaption>
+          </figure>
+          <figure class="variation-card" style="background: var(--c-forest)">
+            <div class="logo-stage logo-stage-tall"><img class="logo-img logo-stacked mono-light" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption class="on-dark">
+              <h4 data-edit="variations.v4.title">Mono — white knockout</h4>
+              <p data-edit="variations.v4.body">For dark single-color surfaces, foil stamping, or apparel. Use the official knockout master.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- CLEAR SPACE ====================================================== -->
+      <section id="clearspace" class="section">
+        <header class="section-head">
+          <span class="section-num">07</span>
+          <h2 data-edit="clearspace.title">Clear space</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="clearspace.p1">Reserve a zone of empty space around the mark equal to <strong><span id="clearXLabel">1</span>×</strong> — where <strong>x</strong> equals the height of the lowercase "u" in <em>Fluff</em>. No type, no graphics, no edges intrude inside this boundary.</p>
+        </div>
+        <div class="control-row">
+          <label for="clearX">Multiplier</label>
+          <input type="range" id="clearX" min="0.5" max="2" step="0.25" value="1" />
+          <output id="clearXOut">1×</output>
+        </div>
+        <div class="clearspace-stage" id="clearspaceStage">
+          <div class="clearspace-box">
+            <img class="logo-img logo-stacked" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <!-- MIN SIZE ========================================================= -->
+      <section id="minsize" class="section">
+        <header class="section-head">
+          <span class="section-num">08</span>
+          <h2 data-edit="minsize.title">Minimum size</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="minsize.p1">Below these sizes the bubble forms thicken into mush and the smile baseline reads as crooked. Don't.</p>
+        </div>
+        <div class="control-row">
+          <label for="minDigital">Digital minimum (px wide)</label>
+          <input type="number" id="minDigital" min="40" max="200" step="4" value="80" />
+          <label for="minPrint" style="margin-left:24px">Print minimum (mm wide)</label>
+          <input type="number" id="minPrint" min="10" max="60" step="1" value="20" />
+        </div>
+        <div class="minsize-stage">
+          <figure>
+            <div class="minsize-frame"><img class="logo-img logo-stacked" id="minDigitalLogo" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption><strong>Digital</strong><span class="muted"> · <span id="minDigitalLabel">80</span>px wide minimum</span></figcaption>
+          </figure>
+          <figure>
+            <div class="minsize-frame"><img class="logo-img logo-stacked" id="minPrintLogo" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption><strong>Print</strong><span class="muted"> · <span id="minPrintLabel">20</span>mm wide minimum</span></figcaption>
+          </figure>
+          <figure>
+            <div class="minsize-frame"><img class="logo-img logo-stacked" id="minComfortLogo" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div>
+            <figcaption><strong>Comfort</strong><span class="muted"> · recommended floor for editorial and packaging</span></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- BACKGROUNDS ====================================================== -->
+      <section id="backgrounds" class="section">
+        <header class="section-head">
+          <span class="section-num">09</span>
+          <h2 data-edit="backgrounds.title">Approved backgrounds</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="backgrounds.p1">The mark is happiest on flat brand colors and clean photography. Avoid placing it on its own primary green, on busy patterns, or on photography that competes for attention with the wordmark. Switch to the sticker variant the moment any of those conditions can't be controlled.</p>
+        </div>
+        <div class="bg-grid" id="bgGrid"><!-- injected by JS --></div>
+      </section>
+
+      <!-- MISUSE =========================================================== -->
+      <section id="misuse" class="section">
+        <header class="section-head">
+          <span class="section-num">10</span>
+          <h2 data-edit="misuse.title">Misuse</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="misuse.p1">Each of these breaks the mark in a way kids will feel before they can name. Don't ship any of them.</p>
+        </div>
+        <div class="misuse-grid">
+          <figure class="misuse-card"><div class="misuse-frame"><img class="logo-img logo-stacked misuse-stretch" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div><figcaption data-edit="misuse.m1">Don't stretch the wordmark.</figcaption></figure>
+          <figure class="misuse-card"><div class="misuse-frame"><img class="logo-img logo-stacked misuse-squish" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div><figcaption data-edit="misuse.m2">Don't squish the wordmark.</figcaption></figure>
+          <figure class="misuse-card"><div class="misuse-frame"><img class="logo-img logo-stacked misuse-rotate" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div><figcaption data-edit="misuse.m3">Don't rotate or tilt the mark.</figcaption></figure>
+          <figure class="misuse-card"><div class="misuse-frame"><img class="logo-img logo-stacked misuse-recolor" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div><figcaption data-edit="misuse.m4">Don't recolor outside the approved palette.</figcaption></figure>
+          <figure class="misuse-card"><div class="misuse-frame"><img class="logo-img logo-stacked misuse-shadow" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div><figcaption data-edit="misuse.m5">Don't add extra drop shadows, glows, or bevels.</figcaption></figure>
+          <figure class="misuse-card"><div class="misuse-frame misuse-bg-busy"><img class="logo-img logo-stacked" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div><figcaption data-edit="misuse.m6">Don't place the primary mark on busy imagery — switch to the sticker variant.</figcaption></figure>
+          <figure class="misuse-card"><div class="misuse-frame misuse-bg-low"><img class="logo-img logo-stacked" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div><figcaption data-edit="misuse.m7">Don't place on low-contrast brand greens — switch to the sticker variant.</figcaption></figure>
+          <figure class="misuse-card"><div class="misuse-frame"><img class="logo-img logo-stacked misuse-flatten" src="assets/fluffpiece-stacked.png" data-fallback="assets/fluffpiece-horizontal.png" alt="" /></div><figcaption data-edit="misuse.m8">Don't flatten the two-tone color into a single green.</figcaption></figure>
+        </div>
+      </section>
+
+      <!-- FILES ============================================================ -->
+      <section id="files" class="section">
+        <header class="section-head">
+          <span class="section-num">11</span>
+          <h2 data-edit="files.title">File formats</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="files.p1">Always use the master files. Never re-export from a screenshot or a slide. When you don't know which file to use, use the SVG.</p>
+        </div>
+        <table class="files-table">
+          <thead><tr><th>File</th><th>Use</th><th>Color space</th></tr></thead>
+          <tbody>
+            <tr><td><code>fluffpiece-stacked.svg</code></td><td data-edit="files.stacked">Primary mark — web, app, presentations, anything that scales</td><td>RGB</td></tr>
+            <tr><td><code>fluffpiece-stacked-sticker.svg</code></td><td data-edit="files.sticker">Sticker variant — busy, photographic, or close-tone backgrounds</td><td>RGB</td></tr>
+            <tr><td><code>fluffpiece-horizontal.svg</code></td><td data-edit="files.horizontal">Horizontal lockup — wide surfaces, broadcast bumpers, web headers</td><td>RGB</td></tr>
+            <tr><td><code>fluffpiece-stacked.pdf</code></td><td data-edit="files.pdf">Print collateral, packaging, broadcast slates</td><td>CMYK</td></tr>
+            <tr><td><code>fluffpiece-stacked.eps</code></td><td data-edit="files.eps">Vendor handoff for embroidery, foil, screen print</td><td>Spot / Pantone</td></tr>
+            <tr><td><code>fluffpiece-mono-ink.svg</code></td><td data-edit="files.monoInk">Single-color dark on light surfaces</td><td>RGB / 1c</td></tr>
+            <tr><td><code>fluffpiece-mono-white.svg</code></td><td data-edit="files.monoWhite">Single-color light on dark surfaces</td><td>RGB / 1c</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- NOTES ============================================================ -->
+      <section id="notes" class="section">
+        <header class="section-head">
+          <span class="section-num">12</span>
+          <h2 data-edit="notes.title">Notes &amp; change log</h2>
+        </header>
+        <div class="prose">
+          <p data-edit="notes.p1">A scratchpad for in-progress thinking. As decisions firm up they get promoted into the sections above and out of this list.</p>
+        </div>
+        <div class="notes-pad" data-edit="notes.body" data-multiline="true">
+          <p>· 2026-05-07 — initial draft. Working from clean stacked PNGs (primary + sticker) plus an existing horizontal lockup.</p>
+          <p>· Open question — confirm hex values against the master vector source; values currently eyeballed.</p>
+          <p>· Open question — does the show have a secondary mascot mark (e.g. a "fluff" character) that needs its own lockup rules?</p>
+          <p>· Open question — confirm broadcast safe-area and end-board treatments with the production team.</p>
+          <p>· Open question — is "Let's Investigate" the show title and "FluffPiece" the brand/property, or are they interchangeable?</p>
+        </div>
+      </section>
+
+      <footer class="page-foot">
+        <p class="muted small">FluffPiece logo guidelines — working draft. Not for external distribution.</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
