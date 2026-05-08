@@ -346,6 +346,44 @@ body {
 .mono-light { filter: brightness(0) invert(1); }
 
 /* =========================================================================
+   Embedded wordmark editor
+   ========================================================================= */
+
+.editor-shell {
+  margin-top: 12px;
+  border: 1px solid var(--doc-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #f2ede3; /* matches the editor's paper tone for seamless seams */
+}
+.editor-frame {
+  display: block;
+  width: 100%;
+  height: 620px;
+  border: 0;
+  background: #f2ede3;
+}
+@media (max-width: 920px) {
+  .editor-frame { height: 720px; }
+}
+.editor-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--doc-surface);
+  border-top: 1px solid var(--doc-line);
+  font-size: 12px;
+}
+.editor-foot a {
+  color: var(--doc-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.editor-foot a:hover { text-decoration: underline; }
+
+/* =========================================================================
    Anatomy grid
    ========================================================================= */
 

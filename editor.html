@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FluffPiece — Wordmark Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,SOFT@0,9..144,0..100;1,9..144,0..100&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:        #F2EDE3;
+    --paper-warm:   #EDE6D6;
+    --paper-deep:   #DDD4C0;
+    --surface:      #FFFFFF;
+    --ink:          #1B1916;
+    --ink-soft:     #6A655B;
+    --ink-faint:    #B7B0A0;
+    --rule:         #D6CFBE;
+    --green-light:  #7ACD8C;
+    --green-dark:   #199B6F;
+    --green-deep:   #0E5A3F;
+    --char:         #1F1D1A;
+
+    --serif: "Fraunces", Georgia, serif;
+    --sans:  "Manrope", system-ui, sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Top bar */
+  header.bar {
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: 22px;
+    line-height: 1;
+    margin-right: auto;
+    padding-right: 12px;
+  }
+  .brand small {
+    display: block;
+    font-family: var(--mono);
+    font-style: normal;
+    font-variation-settings: normal;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+
+  .seg {
+    display: inline-flex;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    background: white;
+  }
+  .seg button {
+    background: white; border: 0;
+    padding: 8px 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: background 0.15s, color 0.15s;
+  }
+  .seg button:hover { color: var(--ink); }
+  .seg button.active { background: var(--ink); color: white; }
+  .seg button + button { border-left: 1px solid var(--rule); }
+  .seg button.active + button,
+  .seg button + button.active { border-left-color: var(--ink); }
+
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .field-row { display: flex; align-items: center; gap: 8px; }
+
+  /* Toggle switch */
+  .toggle { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+  .toggle input { display: none; }
+  .toggle .knob {
+    width: 30px; height: 16px;
+    background: var(--rule);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.15s;
+  }
+  .toggle .knob::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 12px; height: 12px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.15s;
+  }
+  .toggle input:checked + .knob { background: var(--green-dark); }
+  .toggle input:checked + .knob::after { transform: translateX(14px); }
+  .label-mono {
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.1em; color: var(--ink-soft);
+  }
+
+  /* Shadow control row */
+  .shadow-row {
+    gap: 10px;
+    padding: 4px 8px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: white;
+  }
+  .shadow-row .divider {
+    width: 1px; height: 20px;
+    background: var(--rule);
+  }
+  .mini-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .mini-icon {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    min-width: 8px;
+    text-align: center;
+  }
+
+  /* Range slider styling */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    height: 14px;
+    margin: 0;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 3px; background: var(--rule); border-radius: 2px;
+  }
+  input[type="range"]::-moz-range-track {
+    height: 3px; background: var(--rule); border-radius: 2px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 12px; height: 12px;
+    background: var(--green-dark); border-radius: 50%;
+    margin-top: -5px;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 12px; height: 12px;
+    background: var(--green-dark); border-radius: 50%; border: 0;
+  }
+  .num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink);
+    min-width: 22px;
+    text-align: right;
+  }
+
+  /* Canvas swatches */
+  .swatches {
+    display: inline-flex; gap: 4px; align-items: center;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 3px;
+    background: white;
+  }
+  .swatch {
+    width: 22px; height: 22px;
+    border-radius: 3px;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 0;
+    transition: transform 0.1s;
+  }
+  .swatch:hover { transform: scale(1.1); }
+  .swatch.active { box-shadow: 0 0 0 2px var(--ink); }
+  .swatch.custom {
+    position: relative;
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff, #b475e0);
+  }
+  .swatch input[type="color"] {
+    width: 22px; height: 22px;
+    border: 0; background: transparent;
+    cursor: pointer; padding: 0;
+    opacity: 0; position: absolute;
+  }
+
+  button.btn {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 7px 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    color: var(--ink);
+    transition: border-color 0.15s, transform 0.05s;
+  }
+  button.btn:hover { border-color: var(--ink); }
+  button.btn:active { transform: translateY(1px); }
+  button.btn.primary {
+    background: var(--ink); color: white; border-color: var(--ink);
+  }
+  button.btn.primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+
+  /* Stage */
+  main { overflow: hidden; min-height: 0; display: flex; }
+  .stage {
+    flex: 1;
+    background: var(--paper);
+    overflow: auto;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: radial-gradient(circle, var(--paper-deep) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .canvas {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03), 0 8px 24px rgba(27,25,22,0.04);
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 944/682;  /* updated by JS based on layout */
+    position: relative;
+    transition: aspect-ratio 0.2s, background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    box-sizing: content-box;  /* aspect-ratio refers to content area, not border-box */
+  }
+  .canvas img.logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.1s;
+  }
+  .canvas .corner {
+    position: absolute;
+    width: 12px; height: 12px;
+    border: 1px solid var(--ink-faint);
+    pointer-events: none;
+  }
+  .canvas .corner.tl { top: 6px; left: 6px; border-right: 0; border-bottom: 0; }
+  .canvas .corner.tr { top: 6px; right: 6px; border-left: 0; border-bottom: 0; }
+  .canvas .corner.bl { bottom: 6px; left: 6px; border-right: 0; border-top: 0; }
+  .canvas .corner.br { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
+  .canvas .info {
+    position: absolute;
+    bottom: 14px; left: 14px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    pointer-events: none;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: white;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 100;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand">
+    Wordmark Editor
+    <small>FluffPiece</small>
+  </div>
+
+  <div class="field">
+    <label>Layout</label>
+    <div class="seg" id="layout-seg">
+      <button data-layout="1">One line</button>
+      <button class="active" data-layout="2">Two lines</button>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Outline</label>
+    <div class="field-row">
+      <label class="toggle">
+        <input type="checkbox" id="halo-on" checked>
+        <span class="knob"></span>
+      </label>
+      <span class="label-mono">White halo</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Shadow</label>
+    <div class="field-row shadow-row">
+      <label class="toggle">
+        <input type="checkbox" id="shadow-on" checked>
+        <span class="knob"></span>
+      </label>
+      <span class="divider"></span>
+      <div class="mini-control" title="Horizontal offset">
+        <span class="mini-icon">X</span>
+        <input type="range" id="shadow-x" min="-30" max="30" step="1" value="0" style="width: 60px;">
+        <span class="num" id="shadow-x-val">0</span>
+      </div>
+      <div class="mini-control" title="Vertical offset">
+        <span class="mini-icon">Y</span>
+        <input type="range" id="shadow-y" min="-30" max="30" step="1" value="8" style="width: 60px;">
+        <span class="num" id="shadow-y-val">8</span>
+      </div>
+      <div class="mini-control" title="Blur">
+        <span class="mini-icon">⌒</span>
+        <input type="range" id="shadow-blur" min="0" max="40" step="1" value="16" style="width: 60px;">
+        <span class="num" id="shadow-blur-val">16</span>
+      </div>
+      <div class="mini-control" title="Opacity">
+        <span class="mini-icon">●</span>
+        <input type="range" id="shadow-op" min="0" max="100" step="1" value="30" style="width: 60px;">
+        <span class="num" id="shadow-op-val">30</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Canvas</label>
+    <div class="swatches" id="canvas-swatches">
+      <button class="swatch active" data-color="#F2EDE3" style="background:#F2EDE3" title="Paper"></button>
+      <button class="swatch"        data-color="#FFFFFF" style="background:#FFFFFF" title="White"></button>
+      <button class="swatch"        data-color="#7ACD8C" style="background:#7ACD8C" title="Cumulus"></button>
+      <button class="swatch"        data-color="#199B6F" style="background:#199B6F" title="Meadow"></button>
+      <button class="swatch"        data-color="#0E5A3F" style="background:#0E5A3F" title="Forest"></button>
+      <button class="swatch"        data-color="#1F1D1A" style="background:#1F1D1A" title="Charcoal"></button>
+      <label class="swatch custom" title="Custom color">
+        <input type="color" id="canvas-custom" value="#F2EDE3">
+      </label>
+    </div>
+  </div>
+
+  <button class="btn primary" id="download">Download PNG</button>
+</header>
+
+<main>
+  <div class="stage">
+    <div class="canvas" id="canvas">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+      <img class="logo" id="logo-img" alt="FluffPiece logo">
+      <div class="info" id="info"></div>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const COMPOSITES = {
+  '2line_off': {src: 'assets/fluffpiece-stacked.png', w: 944, h: 682},
+  '2line_on': {src: 'assets/fluffpiece-stacked-sticker.png', w: 944, h: 682},
+  '1line_off': {src: 'assets/fluffpiece-horizontal.png', w: 1873, h: 404},
+  '1line_on': {src: 'assets/fluffpiece-horizontal-sticker.png', w: 1873, h: 404},
+};
+
+const state = {
+  layout: '2',
+  haloOn: true,
+  shadowOn: true,
+  shadowX: 0,
+  shadowY: 8,
+  shadowBlur: 16,
+  shadowOp: 30,
+  canvasBg: '#F2EDE3'
+};
+
+const canvasEl = document.getElementById('canvas');
+const logoImg = document.getElementById('logo-img');
+const info = document.getElementById('info');
+
+function render() {
+  const key = state.layout + 'line_' + (state.haloOn ? 'on' : 'off');
+  const comp = COMPOSITES[key];
+  logoImg.src = comp.src;
+  canvasEl.style.aspectRatio = `${comp.w} / ${comp.h}`;
+
+  // CSS drop-shadow follows the image's alpha channel — traces the outer
+  // perimeter of the white halo (or the letters themselves if halo is off).
+  if (state.shadowOn) {
+    const op = state.shadowOp / 100;
+    logoImg.style.filter =
+      `drop-shadow(${state.shadowX}px ${state.shadowY}px ${state.shadowBlur}px rgba(0,0,0,${op}))`;
+  } else {
+    logoImg.style.filter = 'none';
+  }
+
+  info.textContent =
+    `${state.layout === '2' ? 'Two lines' : 'One line'} · outline ${state.haloOn ? 'on' : 'off'} · shadow ${state.shadowOn ? 'on' : 'off'} · ${comp.w}×${comp.h}`;
+}
+
+// Layout toggle
+document.getElementById('layout-seg').addEventListener('click', (e) => {
+  if (!e.target.dataset.layout) return;
+  document.querySelectorAll('#layout-seg button').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  state.layout = e.target.dataset.layout;
+  render();
+});
+
+// Outline toggle
+document.getElementById('halo-on').addEventListener('change', (e) => {
+  state.haloOn = e.target.checked;
+  render();
+});
+
+// Shadow controls
+document.getElementById('shadow-on').addEventListener('change', (e) => {
+  state.shadowOn = e.target.checked;
+  render();
+});
+function bindShadowSlider(id, prop) {
+  const input = document.getElementById(id);
+  const val = document.getElementById(id + '-val');
+  input.addEventListener('input', (e) => {
+    state[prop] = parseInt(e.target.value);
+    val.textContent = state[prop];
+    render();
+  });
+}
+bindShadowSlider('shadow-x',    'shadowX');
+bindShadowSlider('shadow-y',    'shadowY');
+bindShadowSlider('shadow-blur', 'shadowBlur');
+bindShadowSlider('shadow-op',   'shadowOp');
+
+// Canvas swatches
+function setCanvasBg(color) {
+  canvasEl.style.background = color;
+  document.getElementById('canvas-custom').value = color;
+  document.querySelectorAll('#canvas-swatches .swatch').forEach(b => {
+    b.classList.toggle('active', b.dataset.color && b.dataset.color.toLowerCase() === color.toLowerCase());
+  });
+  state.canvasBg = color;
+}
+document.querySelectorAll('#canvas-swatches .swatch[data-color]').forEach(b => {
+  b.addEventListener('click', () => setCanvasBg(b.dataset.color));
+});
+document.getElementById('canvas-custom').addEventListener('input', (e) => {
+  setCanvasBg(e.target.value);
+});
+
+// Download — saves the current composite as a PNG
+document.getElementById('download').addEventListener('click', () => {
+  const key = state.layout + 'line_' + (state.haloOn ? 'on' : 'off');
+  const comp = COMPOSITES[key];
+  const a = document.createElement('a');
+  a.href = comp.src;
+  a.download = `fluffpiece-${state.layout}line${state.haloOn ? '-halo' : ''}.png`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('PNG downloaded');
+});
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+render();
+</script>
+</body>
+</html>
